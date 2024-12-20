@@ -36,6 +36,16 @@ export async function syncUniqueId() {
   return uniqueId;
 }
 
+let idfv: string;
+export async function getIDFV() {
+  if (Platform.OS === 'ios') {
+    idfv = await RNDeviceInfo.getIDFV();
+  } else {
+    idfv = await getUniqueId();
+  }
+  return idfv;
+}
+
 export const [getInstanceId, getInstanceIdSync] = getSupportedPlatformInfoFunctions({
   memoKey: 'instanceId',
   supportedPlatforms: ['android'],
@@ -171,16 +181,14 @@ export const getBundleId = () =>
     getter: () => RNDeviceInfo.bundleId,
   });
 
-export const [
-  getInstallerPackageName,
-  getInstallerPackageNameSync,
-] = getSupportedPlatformInfoFunctions({
-  memoKey: 'installerPackageName',
-  supportedPlatforms: ['android', 'windows', 'ios'],
-  getter: () => RNDeviceInfo.getInstallerPackageName(),
-  syncGetter: () => RNDeviceInfo.getInstallerPackageNameSync(),
-  defaultValue: 'unknown',
-});
+export const [getInstallerPackageName, getInstallerPackageNameSync] =
+  getSupportedPlatformInfoFunctions({
+    memoKey: 'installerPackageName',
+    supportedPlatforms: ['android', 'windows', 'ios'],
+    getter: () => RNDeviceInfo.getInstallerPackageName(),
+    syncGetter: () => RNDeviceInfo.getInstallerPackageNameSync(),
+    defaultValue: 'unknown',
+  });
 
 export const getApplicationName = () =>
   getSupportedPlatformInfoSync({
@@ -679,15 +687,13 @@ export function isLowBatteryLevel(level: number): boolean {
   return level < 0.2;
 }
 
-export const [
-  getSystemAvailableFeatures,
-  getSystemAvailableFeaturesSync,
-] = getSupportedPlatformInfoFunctions({
-  supportedPlatforms: ['android'],
-  getter: () => RNDeviceInfo.getSystemAvailableFeatures(),
-  syncGetter: () => RNDeviceInfo.getSystemAvailableFeaturesSync(),
-  defaultValue: [] as string[],
-});
+export const [getSystemAvailableFeatures, getSystemAvailableFeaturesSync] =
+  getSupportedPlatformInfoFunctions({
+    supportedPlatforms: ['android'],
+    getter: () => RNDeviceInfo.getSystemAvailableFeatures(),
+    syncGetter: () => RNDeviceInfo.getSystemAvailableFeaturesSync(),
+    defaultValue: [] as string[],
+  });
 
 export const [isLocationEnabled, isLocationEnabledSync] = getSupportedPlatformInfoFunctions({
   supportedPlatforms: ['android', 'ios', 'web'],
@@ -705,25 +711,21 @@ export const [isHeadphonesConnected, isHeadphonesConnectedSync] = getSupportedPl
   }
 );
 
-export const [
-  isWiredHeadphonesConnected,
-  isWiredHeadphonesConnectedSync,
-] = getSupportedPlatformInfoFunctions({
-  supportedPlatforms: ['android', 'ios'],
-  getter: () => RNDeviceInfo.isWiredHeadphonesConnected(),
-  syncGetter: () => RNDeviceInfo.isWiredHeadphonesConnectedSync(),
-  defaultValue: false,
-});
+export const [isWiredHeadphonesConnected, isWiredHeadphonesConnectedSync] =
+  getSupportedPlatformInfoFunctions({
+    supportedPlatforms: ['android', 'ios'],
+    getter: () => RNDeviceInfo.isWiredHeadphonesConnected(),
+    syncGetter: () => RNDeviceInfo.isWiredHeadphonesConnectedSync(),
+    defaultValue: false,
+  });
 
-export const [
-  isBluetoothHeadphonesConnected,
-  isBluetoothHeadphonesConnectedSync,
-] = getSupportedPlatformInfoFunctions({
-  supportedPlatforms: ['android', 'ios'],
-  getter: () => RNDeviceInfo.isBluetoothHeadphonesConnected(),
-  syncGetter: () => RNDeviceInfo.isBluetoothHeadphonesConnectedSync(),
-  defaultValue: false,
-});
+export const [isBluetoothHeadphonesConnected, isBluetoothHeadphonesConnectedSync] =
+  getSupportedPlatformInfoFunctions({
+    supportedPlatforms: ['android', 'ios'],
+    getter: () => RNDeviceInfo.isBluetoothHeadphonesConnected(),
+    syncGetter: () => RNDeviceInfo.isBluetoothHeadphonesConnectedSync(),
+    defaultValue: false,
+  });
 
 export const [isMouseConnected, isMouseConnectedSync] = getSupportedPlatformInfoFunctions({
   supportedPlatforms: ['windows'],
@@ -739,15 +741,13 @@ export const [isKeyboardConnected, isKeyboardConnectedSync] = getSupportedPlatfo
   defaultValue: false,
 });
 
-export const [
-  getSupportedMediaTypeList,
-  getSupportedMediaTypeListSync,
-] = getSupportedPlatformInfoFunctions({
-  supportedPlatforms: ['android'],
-  getter: () => RNDeviceInfo.getSupportedMediaTypeList(),
-  syncGetter: () => RNDeviceInfo.getSupportedMediaTypeListSync(),
-  defaultValue: [],
-});
+export const [getSupportedMediaTypeList, getSupportedMediaTypeListSync] =
+  getSupportedPlatformInfoFunctions({
+    supportedPlatforms: ['android'],
+    getter: () => RNDeviceInfo.getSupportedMediaTypeList(),
+    syncGetter: () => RNDeviceInfo.getSupportedMediaTypeListSync(),
+    defaultValue: [],
+  });
 
 export const isTabletMode = () =>
   getSupportedPlatformInfoAsync({
@@ -756,15 +756,13 @@ export const isTabletMode = () =>
     defaultValue: false,
   });
 
-export const [
-  getAvailableLocationProviders,
-  getAvailableLocationProvidersSync,
-] = getSupportedPlatformInfoFunctions({
-  supportedPlatforms: ['android', 'ios'],
-  getter: () => RNDeviceInfo.getAvailableLocationProviders(),
-  syncGetter: () => RNDeviceInfo.getAvailableLocationProvidersSync(),
-  defaultValue: {},
-});
+export const [getAvailableLocationProviders, getAvailableLocationProvidersSync] =
+  getSupportedPlatformInfoFunctions({
+    supportedPlatforms: ['android', 'ios'],
+    getter: () => RNDeviceInfo.getAvailableLocationProviders(),
+    syncGetter: () => RNDeviceInfo.getAvailableLocationProvidersSync(),
+    defaultValue: {},
+  });
 
 export const [getBrightness, getBrightnessSync] = getSupportedPlatformInfoFunctions({
   supportedPlatforms: ['ios'],
@@ -1071,6 +1069,7 @@ const DeviceInfo: DeviceInfoModule = {
   supportedAbis,
   supportedAbisSync,
   syncUniqueId,
+  getIDFV,
   useBatteryLevel,
   useBatteryLevelIsLow,
   useDeviceName,

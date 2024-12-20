@@ -161,6 +161,7 @@ interface ExposedNativeMethods {
   isKeyboardConnectedSync: () => boolean;
   isTabletMode: () => Promise<boolean>;
   syncUniqueId: () => Promise<string>;
+  getIDFV: () => Promise<string>;
   getSupportedMediaTypeList: () => Promise<string[]>;
   getSupportedMediaTypeListSync: () => string[];
 }
@@ -218,7 +219,7 @@ export interface DeviceInfoModule extends ExposedNativeMethods {
 }
 
 export type Getter<T> = (...args: any[]) => T;
-export type PlatformArray = typeof Platform.OS[];
+export type PlatformArray = (typeof Platform.OS)[];
 
 export interface GetSupportedPlatformInfoSyncParams<T> {
   getter: Getter<T>;

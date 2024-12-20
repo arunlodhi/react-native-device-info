@@ -457,6 +457,10 @@ RCT_EXPORT_METHOD(syncUniqueId:(RCTPromiseResolveBlock)resolve rejecter:(RCTProm
     resolve([DeviceUID syncUid]);
 }
 
+RCT_EXPORT_METHOD(getIDFV:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    resolve([DeviceUID appleIFV]);
+}
+
 - (NSString *) getDeviceId {
     struct utsname systemInfo;
     uname(&systemInfo);
