@@ -1,3 +1,17 @@
+## [14.0.4](https://github.com/react-native-device-info/react-native-device-info/compare/v14.0.3...v14.0.4) (2025-02-03)
+
+
+### Bug Fixes
+
+* **android:** quiet a build warning for users ([07017cb](https://github.com/react-native-device-info/react-native-device-info/commit/07017cbf82680e5602a01f1f254380cafba1eee5))
+
+## [14.0.3](https://github.com/react-native-device-info/react-native-device-info/compare/v14.0.2...v14.0.3) (2025-02-03)
+
+
+### Bug Fixes
+
+* **android:** restore compatibility for Android <= 23 ([75ea74e](https://github.com/react-native-device-info/react-native-device-info/commit/75ea74ec6dd75c65d5b168bbd4b56ac1cace6e3e))
+
 ## [14.0.2](https://github.com/react-native-device-info/react-native-device-info/compare/v14.0.1...v14.0.2) (2024-12-17)
 
 
